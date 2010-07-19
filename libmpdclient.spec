@@ -1,13 +1,15 @@
 Summary:	MPD client library
 Summary(pl.UTF-8):	Biblioteka kliencka MPD
 Name:		libmpdclient
-Version:	2.1
+Version:	2.2
 Release:	1
 License:	BSD-like
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/musicpd/%{name}-%{version}.tar.gz
-# Source0-md5:	e160db4429313ad77a57c3028bf7672c
+Source0:	http://downloads.sourceforge.net/musicpd/%{name}-%{version}.tar.gz
+# Source0-md5:	a157c1eb70502f1da8097477104e719e
 URL:		http://www.musicpd.org/doc/libmpdclient/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	doxygen
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,6 +47,10 @@ Statyczna biblioteka kliencka MPD.
 %setup -q
 
 %build
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure
 %{__make}
 
