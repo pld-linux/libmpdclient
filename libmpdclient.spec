@@ -1,12 +1,12 @@
 Summary:	MPD client library
 Summary(pl.UTF-8):	Biblioteka kliencka MPD
 Name:		libmpdclient
-Version:	2.3
+Version:	2.4
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/musicpd/%{name}-%{version}.tar.gz
-# Source0-md5:	04a48ee1e8cd789c788415222bbdfdb9
+# Source0-md5:	efa6964c44fa7f01481a1f8365c1f6cb
 URL:		http://www.musicpd.org/doc/libmpdclient/
 BuildRequires:	autoconf
 BuildRequires:	automake
