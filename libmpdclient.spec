@@ -1,16 +1,17 @@
 Summary:	MPD client library
 Summary(pl.UTF-8):	Biblioteka kliencka MPD
 Name:		libmpdclient
-Version:	2.11
+Version:	2.13
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.musicpd.org/download/libmpdclient/2/%{name}-%{version}.tar.xz
-# Source0-md5:	2b2795929bba9e59f31118c4eedfe309
+# Source0-md5:	63a3c3f757f073be6f225b1ecc2b8116
 URL:		http://www.musicpd.org/doc/libmpdclient/
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	doxygen
+BuildRequires:	meson > 0.38.1
+BuildRequires:	ninja
+BuildRequires:	rpmbuild(macros) >= 1.724
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -31,18 +32,6 @@ Header files for MPD client library.
 %description devel -l pl.UTF-8
 Pliki nagłówkowe biblioteki klienckiej MPD.
 
-%package static
-Summary:	Static MPD client library
-Summary(pl.UTF-8):	Statyczna biblioteka kliencka MPD
-Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-
-%description static
-Static MPD client library.
-
-%description static -l pl.UTF-8
-Statyczna biblioteka kliencka MPD.
-
 %package -n vala-libmpdclient
 Summary:	libmpdclient API for Vala language
 Summary(pl.UTF-8):	API libmpdclient dla języka Vala
@@ -62,18 +51,16 @@ API libmpdclient dla języka Vala.
 %setup -q
 
 %build
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure
-%{__make}
+%meson build \
+	-Ddocumentation=true
+
+%ninja -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+DESTDIR=$RPM_BUILD_ROOT \
+%ninja -C build install
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}
 
@@ -85,21 +72,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README COPYING AUTHORS NEWS
-%attr(755,root,root) %{_libdir}/libmpdclient.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libmpdclient.so.?
+%doc README.rst COPYING AUTHORS NEWS
+%attr(755,root,root) %{_libdir}/libmpdclient.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libmpdclient.so.2
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/api/html
+%doc build/doc/html
 %attr(755,root,root) %{_libdir}/libmpdclient.so
-%{_libdir}/libmpdclient.la
 %{_includedir}/mpd
 %{_pkgconfigdir}/libmpdclient.pc
-
-%files static
-%defattr(644,root,root,755)
-%{_libdir}/libmpdclient.a
 
 %files -n vala-libmpdclient
 %defattr(644,root,root,755)
