@@ -1,17 +1,17 @@
 Summary:	MPD client library
 Summary(pl.UTF-8):	Biblioteka kliencka MPD
 Name:		libmpdclient
-Version:	2.13
-Release:	2
+Version:	2.14
+Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.musicpd.org/download/libmpdclient/2/%{name}-%{version}.tar.xz
-# Source0-md5:	63a3c3f757f073be6f225b1ecc2b8116
+# Source0-md5:	8a9a7c640e4d7397b9af5174c9415d17
 URL:		http://www.musicpd.org/doc/libmpdclient/
 BuildRequires:	doxygen
 BuildRequires:	meson > 0.38.1
 BuildRequires:	ninja
-BuildRequires:	rpmbuild(macros) >= 1.725
+BuildRequires:	rpmbuild(macros) >= 1.727
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -54,13 +54,12 @@ API libmpdclient dla języka Vala.
 %meson build \
 	-Ddocumentation=true
 
-%ninja -C build
+%meson_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-DESTDIR=$RPM_BUILD_ROOT \
-%ninja -C build install
+%meson_install -C build
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}
 
