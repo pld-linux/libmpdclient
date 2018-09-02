@@ -1,12 +1,12 @@
 Summary:	MPD client library
 Summary(pl.UTF-8):	Biblioteka kliencka MPD
 Name:		libmpdclient
-Version:	2.14
+Version:	2.15
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.musicpd.org/download/libmpdclient/2/%{name}-%{version}.tar.xz
-# Source0-md5:	8a9a7c640e4d7397b9af5174c9415d17
+# Source0-md5:	0f96f467051a6d7661e9ab3614e088f2
 URL:		http://www.musicpd.org/doc/libmpdclient/
 BuildRequires:	doxygen
 BuildRequires:	meson > 0.38.1
@@ -31,6 +31,18 @@ Header files for MPD client library.
 
 %description devel -l pl.UTF-8
 Pliki nagłówkowe biblioteki klienckiej MPD.
+
+%package static
+Summary:	Static MPD client library
+Summary(pl.UTF-8):	Statyczna biblioteka kliencka MPD
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static MPD client library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka kliencka MPD.
 
 %package -n vala-libmpdclient
 Summary:	libmpdclient API for Vala language
@@ -81,6 +93,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libmpdclient.so
 %{_includedir}/mpd
 %{_pkgconfigdir}/libmpdclient.pc
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libmpdclient.a
 
 %files -n vala-libmpdclient
 %defattr(644,root,root,755)
