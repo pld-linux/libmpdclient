@@ -49,9 +49,7 @@ Summary:	libmpdclient API for Vala language
 Summary(pl.UTF-8):	API libmpdclient dla języka Vala
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description -n vala-libmpdclient
 libmpdclient API for Vala language.
