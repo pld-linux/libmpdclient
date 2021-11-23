@@ -5,7 +5,7 @@ Version:	2.20
 Release:	1
 License:	BSD-like
 Group:		Libraries
-Source0:	http://www.musicpd.org/download/libmpdclient/2/%{name}-%{version}.tar.xz
+Source0:	https://www.musicpd.org/download/libmpdclient/2/%{name}-%{version}.tar.xz
 # Source0-md5:	2c007da25c0de18921f9fb3155218865
 URL:		http://www.musicpd.org/doc/libmpdclient/
 BuildRequires:	doxygen
