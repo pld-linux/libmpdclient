@@ -11,7 +11,7 @@ URL:		http://www.musicpd.org/doc/libmpdclient/
 BuildRequires:	doxygen
 BuildRequires:	meson > 0.38.1
 BuildRequires:	ninja
-BuildRequires:	rpmbuild(macros) >= 1.727
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -64,12 +64,12 @@ API libmpdclient dla języka Vala.
 %meson build \
 	-Ddocumentation=true
 
-%meson_build -C build
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%meson_install -C build
+%ninja_install -C build
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}
 
