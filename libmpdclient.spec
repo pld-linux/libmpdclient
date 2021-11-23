@@ -12,6 +12,8 @@ BuildRequires:	doxygen
 BuildRequires:	meson > 0.38.1
 BuildRequires:	ninja
 BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
