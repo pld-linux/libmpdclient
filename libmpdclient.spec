@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static library
+
 Summary:	MPD client library
 Summary(pl.UTF-8):	Biblioteka kliencka MPD
 Name:		libmpdclient
@@ -64,6 +68,7 @@ API libmpdclient dla języka Vala.
 
 %build
 %meson build \
+	%{!?with_static_libs:--default-library=shared} \
 	-Ddocumentation=true
 
 %ninja_build -C build
@@ -94,9 +99,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/mpd
 %{_pkgconfigdir}/libmpdclient.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libmpdclient.a
+%endif
 
 %files -n vala-libmpdclient
 %defattr(644,root,root,755)
