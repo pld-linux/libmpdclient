@@ -5,15 +5,15 @@
 Summary:	MPD client library
 Summary(pl.UTF-8):	Biblioteka kliencka MPD
 Name:		libmpdclient
-Version:	2.21
+Version:	2.22
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	https://www.musicpd.org/download/libmpdclient/2/%{name}-%{version}.tar.xz
-# Source0-md5:	a90ab978bed2248d7c3fc35165e7275a
+# Source0-md5:	3c9ddd62e1c97f5530733acf6b7bde9f
 URL:		http://www.musicpd.org/doc/libmpdclient/
 BuildRequires:	doxygen
-BuildRequires:	meson > 0.38.1
+BuildRequires:	meson >= 0.56.0
 BuildRequires:	ninja
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
@@ -32,6 +32,7 @@ Summary:	Header files for the MPD client library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki klienckiej MPD
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Obsoletes:	vala-libmpdclient < 2.22
 
 %description devel
 Header files for MPD client library.
@@ -50,19 +51,6 @@ Static MPD client library.
 
 %description static -l pl.UTF-8
 Statyczna biblioteka kliencka MPD.
-
-%package -n vala-libmpdclient
-Summary:	libmpdclient API for Vala language
-Summary(pl.UTF-8):	API libmpdclient dla języka Vala
-Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-BuildArch:	noarch
-
-%description -n vala-libmpdclient
-libmpdclient API for Vala language.
-
-%description -n vala-libmpdclient -l pl.UTF-8
-API libmpdclient dla języka Vala.
 
 %prep
 %setup -q
@@ -89,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.rst COPYING AUTHORS NEWS
+%doc AUTHORS LICENSES NEWS README.rst
 %attr(755,root,root) %{_libdir}/libmpdclient.so.*.*
 %attr(755,root,root) %ghost %{_libdir}/libmpdclient.so.2
 
@@ -105,7 +93,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libmpdclient.a
 %endif
-
-%files -n vala-libmpdclient
-%defattr(644,root,root,755)
-%{_datadir}/vala/vapi/libmpdclient.vapi
