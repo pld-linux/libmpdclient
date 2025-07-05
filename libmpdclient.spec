@@ -5,12 +5,12 @@
 Summary:	MPD client library
 Summary(pl.UTF-8):	Biblioteka kliencka MPD
 Name:		libmpdclient
-Version:	2.22
+Version:	2.23
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	https://www.musicpd.org/download/libmpdclient/2/%{name}-%{version}.tar.xz
-# Source0-md5:	3c9ddd62e1c97f5530733acf6b7bde9f
+# Source0-md5:	53fd50b49a6d384240bba135b654d837
 URL:		http://www.musicpd.org/doc/libmpdclient/
 BuildRequires:	doxygen
 BuildRequires:	meson >= 0.56.0
