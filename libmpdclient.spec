@@ -16,7 +16,7 @@ BuildRequires:	doxygen
 BuildRequires:	meson >= 0.56.0
 BuildRequires:	ninja
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -56,16 +56,16 @@ Statyczna biblioteka kliencka MPD.
 %setup -q
 
 %build
-%meson build \
+%meson \
 	%{!?with_static_libs:--default-library=shared} \
 	-Ddocumentation=true
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}
 
