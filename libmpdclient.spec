@@ -6,11 +6,12 @@ Summary:	MPD client library
 Summary(pl.UTF-8):	Biblioteka kliencka MPD
 Name:		libmpdclient
 Version:	2.25
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Libraries
 Source0:	https://www.musicpd.org/download/libmpdclient/2/%{name}-%{version}.tar.xz
 # Source0-md5:	9a10bca347652409120466140263060d
+Patch0:		null-real-uri.patch
 URL:		http://www.musicpd.org/doc/libmpdclient/
 BuildRequires:	doxygen
 BuildRequires:	gcc >= 6:4.6
@@ -55,6 +56,7 @@ Statyczna biblioteka kliencka MPD.
 
 %prep
 %setup -q
+%patch -P0 -p1
 
 %build
 %meson \
